@@ -6,4 +6,5 @@
     <string name="action_grid">Grid</string>
     <string name="action_cardview">Cardview</string>
     <string name="btn_share">SHARE</string>
+    <string name="btn_favorite">FAVORITE</string>
 </resources>

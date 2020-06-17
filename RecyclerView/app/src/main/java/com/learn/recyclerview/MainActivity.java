@@ -16,6 +16,7 @@ public class MainActivity extends AppCompatActivity {
 
     private RecyclerView rvHeroes;
     private ArrayList<Heroes> list = new ArrayList<>();
+    private String title = "List";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
 
         list.addAll(HeroesData.getListData());
         showRecyclerList();
+        setTitleBar(title);
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -44,13 +46,18 @@ public class MainActivity extends AppCompatActivity {
         switch (itemId){
             case R.id.action_list:
                 showRecyclerList();
+                title = "List";
                 break;
             case R.id.action_grid:
                 showRecyclerGrid();
+                title = "Grid";
                 break;
             case R.id.action_cardview:
+                showRecyclerCardview();
+                title = "Cardview";
                 break;
         }
+        setTitleBar(title);
     }
 
     private void showRecyclerList() {
@@ -63,5 +70,17 @@ public class MainActivity extends AppCompatActivity {
         rvHeroes.setLayoutManager(new GridLayoutManager(this, 2));
         HeroesGridAdapter heroesGridAdapter = new HeroesGridAdapter(list);
         rvHeroes.setAdapter(heroesGridAdapter);
+    }
+
+    private void showRecyclerCardview() {
+        rvHeroes.setLayoutManager(new LinearLayoutManager(this));
+        HeroesCardviewAdapter heroesCardviewAdapter = new HeroesCardviewAdapter(list);
+        rvHeroes.setAdapter(heroesCardviewAdapter);
+    }
+
+    private void setTitleBar(String title) {
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setTitle(title);
+        }
     }
 }
